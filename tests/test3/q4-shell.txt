@@ -1,0 +1,51 @@
+
+Q4: [7 marks] Shell
+
+[2 marks]
+a) Write a small shell program such that the line below will print the number of files or directories in the current working directory.  You do not need to count hidden files or directories. Only one number should be printed.
+ANSWER:
+#!/bin/bash
+num_files=$(ls -1 | wc -l)
+echo $num_files
+
+
+[5 marks]
+b) Write a Bourne shell program that takes one command line argument.  The
+command line argument is the name of an executable program that your program
+executes once for each file in the current working directory that begins
+with "test".  It runs the program on each file in sequence so that one
+completes before the next one starts. If the program returns 0 then it
+prints a message indicating that the program completed successfully,
+otherwise it prints a message indicating that the program failed. Your program
+does not need to check for errors with the command line argument.
+
+For example, if the program is run as "sh_runit sim", and the current
+working directory contains
+
+test1 test2 test3 notes.txt
+
+then the result is that "sim" is run on each of the files:
+
+sim test1
+sim test2
+sim test3
+
+If sim returned 0 for the last two instances of sim, but not
+the first, it prints:
+
+sim test1 failed
+sim test2 terminated successfully
+sim test3 terminated successfully
+
+ANSWER:
+
+#!/bin/bash
+for i in $(ls -d test*)
+do
+    if[ $($1 $i) == 0]
+    then
+        echo $1 $i terminated suuceesfully
+    else
+        echo $1 $i failed
+    fi
+done

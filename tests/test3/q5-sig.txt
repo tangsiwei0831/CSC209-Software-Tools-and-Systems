@@ -1,0 +1,76 @@
+Q5: [5 marks]  Signals
+Consider the following program that runs without errors.
+
+int flag = 0;
+
+void handler(int code) {
+    fprintf(stderr, "Handler start\n");
+    /* D */
+    if(flag){
+        // assume the open succeeds
+        int fd = open("error.out", O_WRONLY | O_CREAT);
+        dup2(fd, fileno(stderr));
+    }
+ 
+    fprintf(stderr,"Handler end\n");
+}
+
+int main() {
+    struct sigaction sa;
+    sa.sa_handler = handler;
+    sigemptyset(&sa.sa_mask);
+    sigaddset(&sa.sa_mask, SIGQUIT);
+
+    fprintf(stderr, "Initial\n");
+    /* A */
+    sigaction(SIGTERM, &sa, NULL);
+
+    fprintf(stderr, "First\n");
+    /* B */
+    flag = 1;
+    /* C */
+    fprintf(stderr, "Done\n");
+    return 0;
+}
+
+For each of the questions below, write the output of the whole program 
+if the signal arrives at the specified point in the code.
+The default behaviour for SIGTERM is to print "Terminated" and 
+the default behaviour for SIGQUIT is to print "Quit", and both signals
+cause the process to terminate by default.
+
+a) SIGTERM arrives at comment A
+ANSWER: 
+Initial
+Terminated
+
+
+b) SIGTERM arrives at comment B
+ANSWER:
+Initial 
+First
+Handler start
+Handler end
+Terminated
+
+c) SIGTERM arrives at comment C
+ANSWER:
+Initial 
+First
+Handler start
+Terminated
+
+d) SIGTERM arrives at comment B and SIGQUIT arrives at comment D
+ANSWER:
+Initial 
+First
+Handler start
+Handler end
+Terminated
+
+e) SIGTERM arrives at comment C and SIGQUIT arrives at comment D
+ANSWER:
+Initial 
+First
+Handler start
+Terminated

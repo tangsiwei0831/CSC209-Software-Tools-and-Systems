@@ -1,0 +1,40 @@
+Question 1
+Write your answer to each question directly in this file following "ANSWER"
+and submit this file.
+
+a)[1 mark] Why was it not possible to declare the dataset array or the labels 
+array in A1 as a local variable to main?
+
+ANSWER: because it is too large, if we declare it in main, it will result in segmentation fault(core dumped).
+
+
+b)[1 mark] Write a small snippet of C code (< 5 lines) that is an example of 
+a memory leak.
+
+ANSWER: 
+
+int *a = malloc(sizeof(int));
+*a = 10;
+int b = 10;
+a = &b;
+
+
+c)[1 mark] Write a small snippet of C code (< 5 lines) that is an example of 
+a dangling pointer.
+
+ANSWER:
+
+int *a = malloc(sizeof(int));
+*a = 10;
+free(a);
+*a += 10;
+
+d)[1 mark] Write a small snippet of C code (< 5 lines) that would be certain 
+to generate a segmentation fault.
+
+ANSWER:
+
+int *p = NULL;
+*p = 1;
+
+

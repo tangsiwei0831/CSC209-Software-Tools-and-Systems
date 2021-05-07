@@ -1,0 +1,73 @@
+Q2: [ 6 marks] Short answer
+
+For each of the following code snippets, assume that the code leading up to the
+snippet is correct and complete.
+ i) Explain what might cause the specified return value. Be precise. 
+    it is not sufficient to say that an error occurred, or the call succeeded.  
+ii) Does the specified return value indicate that the process should terminate
+    immediately?  Explain your answer.
+
+a) 
+char *ptr = malloc(sizeof(char) * 10000);
+// returns NULL
+
+EXPLAIN CAUSE: 
+There is no enough memory in heap for the pointer since the required
+space is too large, so the size would be zero, therefore return null.
+
+SHOULD EXIT?  
+Yes, should exit. It is unlikely for my program continue running properly.
+
+b) Assume buf is correctly initialized, and that fd is an open descriptor 
+   on a socket.
+
+int n = read(fd, buf, sizeof(buf));
+// returns 0
+
+EXPLAIN CAUSE:
+The pipe or socket for fd is closed, so we cannot read, return 0. 
+
+SHOULD EXIT? 
+No, we don't need to exit since it would not cause error.
+
+c) 
+int status;
+int result = wait(&status);
+//returns -1
+
+EXPLAIN CAUSE:
+Since any process has no child process then wait() returns immediately -1.
+
+SHOULD EXIT?  
+No, we don't need to exit since it doesn't need to wait.
+
+d) int ret = fork();
+// returns -1
+
+EXPLAIN CAUSE:
+The creation of a child process was unsuccessful. The system may have limit on the total number of processes under execution.
+
+SHOULD EXIT?  
+Yes, we should exit since fork cannot be used to create child process and the following program cannot be executed as expected.
+
+e) int ret = fork();
+// returns 0
+
+EXPLAIN CAUSE: 
+Since the current process is child process, so fork returns 0.
+
+SHOULD EXIT?  
+No, we should not exit since this is not error.
+
+f) Assume listenfd is the return value of socket, and bind and listen have
+   also been called on listenfd.  All calls have been successful. 
+   rset has been set up appropriately.
+
+FD_ISSET(listenfd, &rset);
+// returns 1
+
+EXPLAIN CAUSE: 
+the file descriptor listenfd is present in ready set, so the FD_ISSET function returns 1.
+
+SHOULD EXIT? 
+No, should not execute since it executes successfully.

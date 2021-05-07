@@ -1,0 +1,14 @@
+Test instructions
+
+The files in this directory are labelled according to which question they
+belong to.
+
+You will do all of your work in 3 files: q1.txt, q2.c, and q3.c.  These files
+are given to you in the starter code.
+
+You should submit all three files to the directory test1, not to the 
+subdirectories that they came in.  You will receive a warning message from 
+MarkUs if these files not in the right place.
+
+Remember that these questions will be marked by hand, so a partial solution
+will still get part marks.

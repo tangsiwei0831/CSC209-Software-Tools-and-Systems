@@ -1,0 +1,68 @@
+Q3: [5 marks] Memory Model
+Consider the following code:  
+
+struct loc {
+        int x;
+        int y;
+        char *name;
+};
+
+struct loc *fun(struct loc a) {
+        struct loc *b = malloc(sizeof(struct loc));
+        b->x = a.x + 3;
+        b->y  = a.y + 32;
+        b->name = "here";
+        return b;
+}
+
+int main() {
+        struct loc home;
+        home.x = 3;
+        home.y = 5;
+        home.name = "there";
+
+        struct loc *away;
+        away = fun(home);
+}
+
+
+a) The memory models given in q3-memory.pdf potentially model the memory
+   allocated in the above code. State which one of the following is 
+   a valid representation of the memory use of the program:
+	A) Model A 
+	B) Model B 
+	C) Model C
+	D) Model D
+	E) None of models A-D are consistent with the program
+
+ANSWER: C
+
+
+b) Write TRUE if the statement below is correct, and FALSE if it is incorrect:Th
+	The above code will not compile or yields a segmentation fault
+
+ANSWER: FALSE
+
+
+c) Explain what a memory leak is.
+
+ANSWER: Lose the address of a dynamically allocated block
+
+
+d) The above code does not contain a memory leak.  Why?
+
+ANSWER: Although the stack for function fun is lost, but we can still access to the address of
+away(return value of fun) in main.
+
+
+e) Assuming that we are using an operating system with 64 bit memory addresses,
+   provide the size of the following type in bytes
+
+   struct house {
+        char owner[80]; 
+      	struct loc *location;
+   };
+
+ANSWER: 
+80 + 16 = 96 bytes
+

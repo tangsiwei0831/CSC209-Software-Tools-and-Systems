@@ -1,0 +1,69 @@
+Script started on 2021-03-23 15:10:16-0400
+]0;tangsiw3@wolf:/h/u16/c8/00/tangsiw3/Desktopwolf:~/Desktop$ gdb randclient
+GNU gdb (Ubuntu 8.1.1-0ubuntu1) 8.1.1
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from randclient...done.
+(gdb) b main
+Breakpoint 1 at 0xc69: file randclient.c, line 24.
+(gdb) run 127.0.0.1
+Starting program: /h/u16/c8/00/tangsiw3/Desktop/randclient 127.0.0.1
+
+Breakpoint 1, main (argc=2, argv=0x7fffffffe788) at randclient.c:24
+24	    if (argc != 2) {
+(gdb) run 127.0.0.1
+The program being debugged has been started already.
+Start it from the beginning? (y or n) n
+Program not restarted.
+(gdb) r
+The program being debugged has been started already.
+Start it from the beginning? (y or n) y
+Starting program: /h/u16/c8/00/tangsiw3/Desktop/randclient 127.0.0.1
+
+Breakpoint 1, main (argc=2, argv=0x7fffffffe788) at randclient.c:24
+24	    if (argc != 2) {
+(gdb) run 127.0.0.1
+The program being debugged has been started already.
+Start it from the beginning? (y or n) y
+Starting program: /h/u16/c8/00/tangsiw3/Desktop/randclient 127.0.0.1
+
+Breakpoint 1, main (argc=2, argv=0x7fffffffe788) at randclient.c:24
+24	    if (argc != 2) {
+(gdb) n
+29	    int soc = connect_to_server(PORT, argv[1]);
+(gdb) n
+31	    write_random_pieces(soc, MESSAGE, TIMES);
+(gdb) n
+33	    close(soc);
+(gdb) n[Kru[K[Kquit
+A debugging session is active.
+
+	Inferior 1 [process 2358] will be killed.
+
+Quit anyway? (y or n) n
+Not confirmed.
+(gdb) run 127.0.0.1
+The program being debugged has been started already.
+Start it from the beginning? (y or n) n
+Program not restarted.
+(gdb) quit
+A debugging session is active.
+
+	Inferior 1 [process 2358] will be killed.
+
+Quit anyway? (y or n) y
+]0;tangsiw3@wolf:/h/u16/c8/00/tangsiw3/Desktopwolf:~/Desktop$ exit
+exit
+
+Script done on 2021-03-23 15:18:16-0400

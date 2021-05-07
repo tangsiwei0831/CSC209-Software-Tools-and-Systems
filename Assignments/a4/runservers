@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Pass in the starting port number as a command line argument
+# and start 5 auction_servers with increasing port numbers
+# $(( )) does the arithmetic expansion in bash
+
+start_port=$1
+
+./auction_server -v -t 15 -p $start_port Mirror &
+./auction_server -v -t 15 -p $(($start_port + 1)) Necklace &
+./auction_server -v -t 15 -p $(($start_port + 2)) Painting &
+./auction_server -v -t 15 -p $(($start_port + 3)) Armoir &
+./auction_server -v -t 15 -p $(($start_port + 4)) Ring &
+
